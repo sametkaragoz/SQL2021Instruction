@@ -44,7 +44,7 @@
     INSERT INTO siparisler VALUES(33, 103, '19-04-2020');
     INSERT INTO siparisler VALUES(44, 104, '20-04-2020');
     INSERT INTO siparisler VALUES(55, 105, '21-04-2020');
-?
+
     SELECT * FROM siparisler;
     SELECT * FROM sirketler;
     
@@ -60,7 +60,7 @@
     FROM tablo1 
     FULL JOIN tablo2
     ON tablo1.sutun = tablo2.sutun;
-?
+
 ==============================================================================*/   
    
 /* -----------------------------------------------------------------------------
@@ -113,7 +113,7 @@
     FROM tablo1 
     LEFT JOIN tablo2
     ON tablo1.sutun = tablo2.sutun;
-?
+
 ==============================================================================*/  
             
 /* -----------------------------------------------------------------------------
@@ -153,18 +153,19 @@
      
   ----ornekler   
      CREATE TABLE bolumler (
-      bolum_id   NUMBER(2) ,
+      bolum_id   NUMBER(2) CONSTRAINT bolum_pk PRIMARY KEY ,
       bolum_isim VARCHAR2(14),
       konum      VARCHAR2(13) 
     );
+    
     INSERT INTO bolumler VALUES (10,'MUHASABE','IST');
     INSERT INTO bolumler VALUES (20,'MUDURLUK','ANKARA');
     INSERT INTO bolumler VALUES (30,'SATIS','IZMIR');
     INSERT INTO bolumler VALUES (40,'ISLETME','BURSA');
     INSERT INTO bolumler VALUES (50,'DEPO', 'YOZGAT');
-?
+
     CREATE TABLE personel (
-      personel_id   NUMBER(4) ,
+      personel_id   NUMBER(4) CONSTRAINT personel_pk PRIMARY KEY,
       personel_isim VARCHAR2(10),
       meslek        VARCHAR2(9),
       mudur_id      NUMBER(4),
@@ -191,6 +192,8 @@
     INSERT INTO personel VALUES (7934,'EBRU','KATIP',7782,'23.JAN.1982',1300,10);
     INSERT INTO personel VALUES (7956,'SIBEL','MIMAR',7782,'29.JAN.1991',3300,60);
     INSERT INTO personel VALUES (7933,'ZEKI','MUHENDIS',7782,'26.JAN.1987',4300,60);
+    
+    commit;
      
     SELECT * FROM personel;
     
@@ -207,14 +210,18 @@
  --  ORNEK2: SATIS,ISLETME ve DEPO bolumlerinde calisan personelin isimlerini,  
 --  bolumlerini ve ise_baslama tarihlerini bolum_isim sýralý olarak listeleyiniz. 
 --  NOT: calisani olmasa bile bolum ismi gosterilmelidir
-?
+
 select bolum_isim, personel_isim, ise_baslama
 from bolumler b
 left JOIN personel p
 on p.bolum_id=b.bolum_id
 where bolum_isim IN('SATIS','ISLETME','DEPO')
 ORDER BY bolum_isim;
-?
+
 /*ORNEK3: Tüm bolumlerde calisan personelin isimlerini, bolum isimlerini ve 
   maaslarini bolum_id ve maas ters sirali listeleyiniz. 
   NOT: calisani olmasa bile bolum ismi gosterilmelidir.*/
+  
+  drop table personel;
+  drop table bolumler;
+  SELECT * FROM urunler;

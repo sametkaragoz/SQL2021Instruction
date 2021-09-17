@@ -97,9 +97,23 @@
         * FROM personel2
         WHERE maas IN (4000, 5000, 7000);
     
+    /*======================= SELECT - LIKE ======================================
+        NOT:LIKE anahtar kelimesi, sorgulama yaparken belirli patternleri
+        kullanabilmemize olanak saðlar.
+        SYNTAX:
+        -------
+        SELECT sutün1, sutün2,…
+        FROM  tablo_adý WHERE sütun LIKE pattern
+        PATTERN ÝÇÝN
+        -------------
+        %    ---> 0 veya daha fazla karakteri belirtir.
+        _    ---> Tek bir karakteri temsil eder.
+    ====================================================  */
     
+    -- ornek1 ismi a harfi ile baslayanlari listele
     
-    
+    SELECT * FROM personel2
+    WHERE isim LIKE 'A%';
     
     
     
